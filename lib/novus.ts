@@ -1,11 +1,8 @@
-import { Novus } from '@pendo/novus-js'
-
-export const novus = new Novus({
-  apiKey: process.env.NOVUS_API_KEY || 'demo_key',
-  autoCapture: true,
-  agentTracing: true,
-  sessionReplay: true
-})
+export const novus = {
+  track: (event: string, data?: any) => {
+    console.log('[Novus]', event, data)
+  }
+}
 
 export function trackGoal(goal: string, metadata?: any) {
   return novus.track('goal_set', { goal, ...metadata })
